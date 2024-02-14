@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title> Calculator App</title>
+    </head>
+    
+    <style>
+        #image {
+            border-radius: 10px;
+            opacity: 0.5;
+        }
+    </style>
+    <script>
+      
+        function calculator(operation) {
+
+            var first = document.getElementsByTagName("input")
+            var input1 = first[0].value
+            var input2 = first[1].value
+
+            if(input1 === '' && input2 === ''){
+                document.getElementById("error").innerHTML ="<p style='color:red;'>inputs are empty</p> "
+            }else if(input1 === ''){
+                document.getElementById("error").innerHTML ="<p style='color:red;'>input1 is empty</p> "
+            }else if(input2 === ""){
+                document.getElementById("error").innerHTML ="<p style='color:red;'>input2 is empty</p> "
+            }
+
+            
+            var first = parseInt(input1)
+            var second = parseInt(input2)
+            var resultTag = document.getElementById("result")
+            var result = 0
+            if( operation == 'add') {
+                console.log(resultTag)
+                result = first + second
+                resultTag.textContent = resultTag.textContent +" addition of" +first+" and" +second+ " is: "+result
+            } else if ( operation == 'sub') {
+                result = first - second
+            } else if ( operation == 'mul') {
+                result = first * second
+            } else {
+                result = first/second
+            }
+            // resultTag ="result is " + result
+
+            
+        }
+
+        function validate() {
+            var email = document.getElementById('email').value
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(email.isEmpty()) {
+                document.getElementById("result").textContent ="Please enter email"
+            } else {
+                if (emailRegex.test(email)) {
+                        document.getElementById("result").textContent = "Email is valid";
+                    } else {
+                        document.getElementById("result").textContent = "Invalid Email";
+                    }
+            }
+
+        }
+
+        function mover() {
+            var image = document.getElementById("image")
+            image.style.width = "600px"
+            image.style.height = "600px"
+            image.style.opacity = '1.0'
+        }
+         function mout() {
+            var image = document.getElementById("image")
+            image.style.width = "300px"
+            image.style.height = "300px"
+            image.style.opacity = '0.5'
+         }
+    </script>
+    <body>
+        <h1>Calculator App</h1>
+        <!-- <form> -->
+            <input type="number" id="first" placeholder="enter first number" value=""  />
+            <input type="number" id="first" placeholder="enter second number" />
+            <input type="email" id="email" placeholder="enter email" value="" oninput="validate()"  />
+        <!-- </form> -->
+        <button onclick="validate()">Submit</button>
+        <button onclick="calculator('add')">Add</button>
+        <button onclick="calculator('sub')">Sub</button>
+        <button onclick="calculator('mul')">Mul</button>
+        <button onclick="calculator('div')">Div</button>
+        <p id="error"></p>
+      
+        <p id="result">Your result will appear here!</p>
+        <img id="image" onmouseover="mover()" onmouseout="mout()" src="https://c.ndtvimg.com/2021-11/o66r0bb8_ms-dhoni-ipl_625x300_20_November_21.jpg?im=FeatureCrop,algorithm=dnn,width=806,height=605" width="300" height="300" />
+    </body>
+</html>
